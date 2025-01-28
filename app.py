@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
+import design  # Import the design module
 
 # Title
-st.title("Data Cleaning Tool")
+design.render_title()
 
 # File upload
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
@@ -10,28 +11,10 @@ uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 if uploaded_file is not None:
     # Load the data
     df = pd.read_csv(uploaded_file)
-    st.subheader("Raw Data")
-    st.dataframe(df)
+    design.render_raw_data_section(df)
 
-    # Cleaning Options
-    st.sidebar.header("Cleaning Options")
-    
-    # Remove Duplicates
-    remove_duplicates = st.sidebar.checkbox("Remove Duplicates")
-    
-    # Handle Missing Values
-    st.sidebar.subheader("Handle Missing Values")
-    missing_option = st.sidebar.radio(
-        "Choose how to handle missing values:",
-        ("None", "Drop Rows", "Fill with Mean", "Fill with Median", "Fill with Specific Value")
-    )
-    specific_value = None
-    if missing_option == "Fill with Specific Value":
-        specific_value = st.sidebar.text_input("Enter the value to fill missing cells:")
-    
-    # Drop Columns
-    st.sidebar.subheader("Drop Columns")
-    drop_columns = st.sidebar.multiselect("Select columns to drop:", df.columns)
+    # Sidebar Cleaning Options (Not fully functional yet)
+    remove_duplicates, missing_option, specific_value, drop_columns = design.render_sidebar(df.columns)
     
     # Apply Cleaning
     if st.button("Clean Data"):
@@ -39,7 +22,7 @@ if uploaded_file is not None:
         if remove_duplicates:
             df = df.drop_duplicates()
 
-        # Handle missing values
+        # Handle missing values (options needs improvements)
         if missing_option == "Drop Rows":
             df = df.dropna()
         elif missing_option == "Fill with Mean":
@@ -53,14 +36,11 @@ if uploaded_file is not None:
         if drop_columns:
             df = df.drop(columns=drop_columns)
 
-        st.subheader("Cleaned Data")
-        st.dataframe(df)
+        # Display Cleaned Data
+        design.render_cleaned_data_section(df)
 
-        # Download cleaned data
-        cleaned_csv = df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="Download Cleaned Data as CSV",
-            data=cleaned_csv,
-            file_name="cleaned_data.csv",
-            mime="text/csv"
-        )
+        # Download Cleaned Data
+        design.render_download_button(df)
+
+    # Visualization Section
+    design.render_visualization_section(df)

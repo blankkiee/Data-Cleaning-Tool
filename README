@@ -1,0 +1,54 @@
+1. Install Dependencies
+
+- pip install streamlit pandas matplotlib seaborn
+
+2. Run app.pi
+
+- streamlit run app.py
+
+# Key Features:
+
+- Upload CSV Files:
+
+1. Prepare your .CSV file for processing.
+2. Drag and drop your file or use the Browse File button to upload it.
+3. Once uploaded, the sidebar will appear, displaying all the data cleaning options.
+
+- Data Cleaning Options:
+
+1. Remove Duplicates: Eliminate duplicate rows with a single click.
+2. Handle Missing Values: Choose from several strategies to handle missing data:
+   i. Drop rows with missing values.
+   ii. Fill missing cells with the mean or median of the column.
+   iii. Provide a specific value to fill the gaps.
+3. Drop Columns: Select unwanted columns from the dropdown to remove them from the dataset.
+
+- Cleaned Data Display:
+
+1. View the cleaned data in the main dashboard after applying your chosen cleaning options.
+2. Use the Clean Data button to process your uploaded dataset.
+
+- Data Visualization:
+
+1. Chart Types: Select from various visualization options, including:
+   i. Bar Chart
+   ii. Line Chart
+   iii. Scatter Plot
+   iv. Histogram
+2. Choose the X-Axis and Y-Axis from the dropdown menus to define the variables for your visualization.
+3. Click the Generate Visualization button to create your chart.
+
+- Download Chart:
+
+1. Once your chart is generated, you can download it as a PNG file using the Download Chart button.
+
+- Download Cleaned Data:
+
+1. After cleaning your data, you can download the processed dataset as a CSV file for further analysis.
+
+- Workflow:
+
+1. Upload: Start by uploading your .CSV file.
+2. Clean: Use the sidebar options to clean your data (e.g., remove duplicates, handle missing values, or drop columns).
+3. Visualize: Select the desired chart type and define the axes for your visualization in the main dashboard.
+4. Download: Save your cleaned dataset or visualization chart for offline use.
